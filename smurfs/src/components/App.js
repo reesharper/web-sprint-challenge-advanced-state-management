@@ -2,7 +2,7 @@ import "./App.css";
 import React, { useEffect } from "react";
 import { connect } from 'react-redux';
 import SmurfForm from './smurfForm';
-import { fetchSmurfs } from '../actions/action'
+import { fetchSmurfs, postSmurfs } from '../actions/action'
 
 const App = (props) => {
 
@@ -10,9 +10,14 @@ const App = (props) => {
     props.fetchSmurfs();
   }, [])
 
+  useEffect(() => {
+    props.postSmurfs();
+  }, [])
+
   return (
     <div className="App">
       <h1>SMURFS! W/Redux</h1>
+      <SmurfForm />
       <div className='smurfs'>
       {props.isLoading ? <p>Loading jokes...</p> : null}
       {props.error ? <p style={{ color: "red" }}>{props.error}</p> : null}
@@ -36,4 +41,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchSmurfs })(App);
+export default connect(mapStateToProps, { fetchSmurfs, postSmurfs })(App);

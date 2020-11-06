@@ -1,48 +1,59 @@
-import React from 'react';
+import React, { useReducer } from 'react';
+import { postSmurfs, setSmurf } from '../actions/action';
+import { reducer, initialState } from '../reducers/reducer'
 
 const SmurfForm = () => {
 
+  const [state, dispatch] = useReducer(reducer, initialState)
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(postSmurfs(state.smurfData))
+  } 
+
   const onChange = (e) => {
-    const { name, value, target } = e.target;
-    // change(name, value, target)
+    dispatch(setSmurf(e.target.value))
   }
 
   return (
+
     <form>
 
     <label>
-      Name
+      Name: 
       <input 
-      // value={values.name}
+      value={state.newSmurf.name}
       name="name"
       type="text"
-      // onChange={onChange}
+      onChange={onChange}
       />
     </label>
-
+      <br />
     <label>
-      Age
+      Age:
       <input 
-      // value={values.age}
+      value={state.newSmurf.age}
       name="age"
       type="text"
-      // onChange={onChange}
+      onChange={onChange}
       />
     </label>
-
+      <br />
     <label>
-      Height
+      Height:
       <input 
-      // value={values.height}
+      value={state.newSmurf.height}
       name="height"
       type="text"
-      // onChange={onChange}
+      onChange={onChange}
       />
     </label>
+      <br />
+    <button onClick={handleSubmit}> ADD </button>
 
   </form>
 
-  )
-}
+  );
+};
 
 export default SmurfForm;
