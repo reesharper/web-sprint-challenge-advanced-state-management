@@ -10,9 +10,9 @@ const App = (props) => {
     props.fetchSmurfs();
   }, [])
 
-  useEffect(() => {
-    props.postSmurfs();
-  }, [])
+  // useEffect(() => {
+  //   props.postSmurfs();
+  // }, [])
 
   return (
     <div className="App">
