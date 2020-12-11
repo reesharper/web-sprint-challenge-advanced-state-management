@@ -1,4 +1,4 @@
-import { FETCH_SMURF_START, FETCH_SMURF_SUCCESS, FETCH_SMURF_FAILURE, POST_SMURF_START, POST_SMURF_SUCCESS, POST_SMURF_FAILURE, SET_SMURF } from '../actions/action'
+import { FETCH_SMURF_START, FETCH_SMURF_SUCCESS, FETCH_SMURF_FAILURE, POST_SMURF_START, POST_SMURF_SUCCESS, POST_SMURF_FAILURE, SET_SMURF_NAME, SET_SMURF_HEIGHT, SET_SMURF_AGE } from '../actions/action'
 
 export const initialState = {
   isLoading: false,
@@ -56,12 +56,14 @@ export const reducer = (state = initialState, action) => {
         error: action.payload
       }
 
-    case SET_SMURF:
-      return { ...state, newSmurf: {
-        name: action.payload,
-        age: action.payload,
-        height: action.payload.height
-      }}
+    case SET_SMURF_NAME:
+      return { ...state, newSmurf: {...state.newSmurf, name: action.payload}}
+
+    case SET_SMURF_AGE:
+      return { ...state, newSmurf: {...state.newSmurf, age: action.payload}}
+
+    case SET_SMURF_HEIGHT:
+      return { ...state, newSmurf: {...state.newSmurf, height: action.payload}}
     
     default:
       return state;
