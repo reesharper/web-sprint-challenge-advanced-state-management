@@ -1,59 +1,56 @@
-import React, { useReducer } from 'react';
-import { postSmurfs, setSmurf } from '../actions/action';
-import { reducer, initialState } from '../reducers/reducer'
+import React from 'react';
+import { postSmurfs, setSmurf, fetchSmurfs } from './actions/action';
+import { connect } from 'react-redux';
 
-const SmurfForm = () => {
-
-  const [state, dispatch] = useReducer(reducer, initialState)
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(postSmurfs(state.smurfData))
-  } 
+const SmurfForm = (props) => {
 
   const onChange = (e) => {
-    dispatch(setSmurf(e.target.value))
+    props.setSmurf(e.target.value);
+    // console.log(props.setSmurf(e.target.value));
   }
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    props.postSmurfs(props.newSmurf);
+    props.fetchSmurfs();
+    console.log(props.newSmurf);
+  } 
 
   return (
-
     <form>
-
-    <label>
-      Name: 
-      <input 
-      value={state.newSmurf.name}
+    <label> Name: <input 
+      value={props.name}
       name="name"
       type="text"
       onChange={onChange}
-      />
-    </label>
-      <br />
-    <label>
-      Age:
-      <input 
-      value={state.newSmurf.age}
+      /> </label> <br />
+
+    <label> Age: <input 
+      value={props.age}
       name="age"
       type="text"
       onChange={onChange}
-      />
-    </label>
-      <br />
-    <label>
-      Height:
-      <input 
-      value={state.newSmurf.height}
+      /> </label> <br />
+      
+    <label> Height: <input 
+      value={props.height}
       name="height"
       type="text"
       onChange={onChange}
-      />
-    </label>
-      <br />
+      /> </label> <br />
+
     <button onClick={handleSubmit}> ADD </button>
-
   </form>
-
   );
 };
 
-export default SmurfForm;
+const mapStateToProps = (state) => {
+  return {
+    name: state.newSmurf.name,
+    age: state.newSmurf.age,
+    height: state.newSmurf.height,
+    newSmurf: state.newSmurf
+  };
+};
+
+export default connect(mapStateToProps, { postSmurfs, setSmurf, fetchSmurfs })(SmurfForm);

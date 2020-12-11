@@ -57,7 +57,11 @@ export const reducer = (state = initialState, action) => {
       }
 
     case SET_SMURF:
-      return { ...state, newSmurf: action.payload }
+      return { ...state, newSmurf: {
+        name: action.payload,
+        age: action.payload,
+        height: action.payload.height
+      }}
     
     default:
       return state;
