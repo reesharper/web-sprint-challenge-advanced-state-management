@@ -1,3 +1,55 @@
-.App {
+body {
+  background-color: rgb(238, 196, 196);
   text-align: center;
+  font-size: 2rem;
+}
+
+.smurfs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+  text-align: center;
+  width: 100%;
+}
+
+.smurf {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: no-wrap;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgb(12, 212, 238);
+  width: 300px;
+  border-radius: 50%;
+  margin: 2%;
+  padding: 3%;
+  height: 300px;
+  font-size: 1.2rem;
+}
+
+button {
+  border: 0px solid black;
+  padding: .7%;
+  margin: 1%;
+  border-radius: 30px;
+  width: 8%;
+  font-size: 1.2rem;
+  background-color: rgb(235, 235, 235);
+  transition: .5s;
+}
+
+button:hover {
+  background-color: rgb(12, 212, 238);
+  transition: .5s;
+}
+
+form {
+  font-size: 1rem;
+  margin: 1%;
+}
+
+input {
+  margin: .5%;
 }
